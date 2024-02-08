@@ -982,7 +982,7 @@
                     "name": "",
                     "id": "24f7541e-8bbc-415c-8a77-39fdb89f484a",
                     "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Y pressed",

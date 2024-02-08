@@ -5,60 +5,95 @@ using UnityEngine.InputSystem;
 
 public class transitionEchelle : MonoBehaviour
 {
-    public InputActionReference toggle;
+    public InputActionReference next;
+    public InputActionReference prev;
 
-    public GameObject[] arr = new GameObject[3];
+    public GameObject[] arr = new GameObject[10];
 
-
-    public float scaleCoef = 100f;
     public GameObject _mainDroite;
 
+    private int i = 0;
+
     public bool t = false;
+    public bool t1 = false;
+
+    private Vector3 vectGros = new Vector3(0, 50, 115);
 
 
     // Start is called before the first frame update
     void Start()
     {
         _mainDroite = GameObject.Find("Right Controller");
+        for (int j = 0; j< arr.Length; j++)
+        {
+            arr[j].SetActive(false);
+            arr[j].GetComponent<Transform>().localPosition = vectGros;
+            arr[j].GetComponent<Transform>().localScale = 100f * Vector3.one;
+            //Debug.Log("AAAAAAAAAAAAA :          " + j);
+        }
         arr[0].GetComponent<Transform>().localScale = 0.01f * Vector3.one;
         arr[0].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
-        arr[0].GetComponent<Transform>().localPosition = new Vector3(0, -0.3f, 0);
+        arr[0].GetComponent<Transform>().localPosition = new Vector3(0, -0.1f, 0);
+        arr[0].SetActive(true); 
+        
+        arr[1].SetActive(true);
 
-        arr[1] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        arr[1].GetComponent<Transform>().localScale = scaleCoef * Vector3.one;
-        arr[1].GetComponent<Transform>().localPosition = new Vector3(0, 50, 150);
-
-        arr[2] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        arr[2].GetComponent<Transform>().localScale = 100f * Vector3.one;
-        arr[2].SetActive(false);
-   
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        toggle.action.started += Toggle;
-        if(t)
+
+        next.action.started += Next;
+        prev.action.started += Previous;
+
+        if (t)
         {
-            arr[1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[1].transform.position, _mainDroite.GetComponent<Transform>().position, 5f);
-            if(scaleCoef > 0.1)
+            arr[i].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
+            arr[i].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i].transform.position, _mainDroite.GetComponent<Transform>().position, 2f);
+            if (arr[i].GetComponent<Transform>().localScale.x > 0.1)
             {
-                scaleCoef /= 1.2f;
-                arr[1].GetComponent<Transform>().localScale = scaleCoef * Vector3.one;
+                arr[i].GetComponent<Transform>().localScale /= 1.2f;
+            }
+            else 
+            {
+                arr[i+1].SetActive(true);
+                arr[i+1].GetComponent<Transform>().position = vectGros;
+            }
+            if(arr[i].GetComponent<Transform>().localScale.x > 0.1 && arr[i].GetComponent<Transform>().position == _mainDroite.GetComponent<Transform>().position)
+            {
+                t = false;
             }
         }
-        
+        if (t1)
+        {
+            arr[i+1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i+1].transform.position, vectGros, 5f);
+            if (arr[i+1].GetComponent<Transform>().localScale.x < 100f)
+            {
+                arr[i+1].GetComponent<Transform>().localScale *= 1.2f;
+            }
+            else
+            {
+                arr[i].SetActive(true);
+                arr[i].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
+                t1 = false;
+            }
+        }
     }
 
-    public void Toggle(InputAction.CallbackContext context)
+    public void Next(InputAction.CallbackContext context)
     {
-        
-        Destroy(arr[0]);
+        arr[i].SetActive(false);
         t = true;
-        arr[1].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
-        arr[1].GetComponent<MeshRenderer>().material.color = Color.red;
-        
+        i++;
+    }
+
+    public void Previous(InputAction.CallbackContext context)
+    {
+        arr[i].GetComponent<Transform>().SetParent(null);
+        arr[i+1].SetActive(false);
+        t1 = true;
+        i--;
     }
 
 }
