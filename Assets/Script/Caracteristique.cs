@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Caracteristique : MonoBehaviour
 {
+
+    public int puissance;
     // Start is called before the first frame update
     void Start()
     {
