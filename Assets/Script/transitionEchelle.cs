@@ -17,7 +17,7 @@ public class transitionEchelle : MonoBehaviour
     public bool t = false;
     public bool t1 = false;
 
-    private Vector3 vectGros = new Vector3(0, 50, 115);
+    private Vector3 vectGros = new Vector3(0, 50, 150);
 
 
     // Start is called before the first frame update
