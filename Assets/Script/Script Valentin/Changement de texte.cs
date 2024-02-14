@@ -7,9 +7,12 @@ public class Changementdetexte : MonoBehaviour
 {
     // Start is called before the first frame update
     public TextMeshProUGUI obj1;
+    public ParagrapheQuestion para;
+    public TextMeshProUGUI obj2;
+
+
     void Start()
     {
-        obj1=GetComponentInChildren<TextMeshProUGUI>();
         
     }
 
@@ -20,7 +23,7 @@ public class Changementdetexte : MonoBehaviour
     }
     public void Changementobj()
     {
-        obj1 = GetComponentInChildren<TextMeshProUGUI>();
+        para.paragraphe.text = "Imaginons qu’un " + obj1.text + " fasse la taille d’une POMME, qu’elle serait la taille de "+ obj2.text + " ?";
 
     }
 }
