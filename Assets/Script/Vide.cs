@@ -33,9 +33,9 @@ public class Vide : MonoBehaviour
         scale = new Vector3(transform.localScale.x - differenceX, transform.localScale.y- differenceY, transform.localScale.z- differenceZ);
         Debug.Log(scale);
 
-        posFinaleX = 0; //posfinal.transform.position.x;
-        posFinaleY = 0; //posfinal.transform.position.y;
-        posFinaleZ = 0; //posfinal.transform.position.z;
+        posFinaleX = posfinal.transform.localPosition.x;
+        posFinaleY = posfinal.transform.localPosition.y;
+        posFinaleZ = posfinal.transform.localPosition.z;
 
         vecdist = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z) - new Vector3(posFinaleX, posFinaleY, posFinaleZ) ;
     }
@@ -59,7 +59,7 @@ public class Vide : MonoBehaviour
 
     void majTxt()
     {
-        txtTauxRetire.text = "Vide retiré : \n" + pourcentageDial*100 + "%";
+        txtTauxRetire.text = "Vide retiré : \n" + valDial*100 + "%";
     }
 
     void calculDistance()
