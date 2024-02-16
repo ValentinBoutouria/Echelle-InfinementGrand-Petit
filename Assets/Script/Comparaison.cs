@@ -68,8 +68,7 @@ public class Comparaison : MonoBehaviour
             } 
             //else A1 plus grand que A2 on ne change rien
         }
-        else 
-            Debug.Log("AAAAAAAAAAA");
+        
     }
 
     public void CalculerTaille()
