@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Ground_Generic_4.mat.meta
 guid: ccc17081dc6b4434194b92c03b9abce7
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+========
+guid: df593a320500c864b944dbe6d9028b42
+timeCreated: 1454191148
+licenseType: Store
+DefaultImporter:
+>>>>>>>> ceda74e30fc70ab5821d5dd1667c1d6fc01d561d:Assets/Planet Earth Free/Demo.unity.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
