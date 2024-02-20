@@ -9,6 +9,10 @@ public class Changementdetexte : MonoBehaviour
     public TextMeshProUGUI obj1;
     public ParagrapheQuestion para;
     public TextMeshProUGUI obj2;
+    public TextMeshProUGUI Réponse;
+
+    public TextMeshProUGUI boutonRéponse;
+
 
 
     void Start()
@@ -24,6 +28,7 @@ public class Changementdetexte : MonoBehaviour
     public void Changementobj()
     {
         para.paragraphe.text = "Imaginons qu’un " + obj1.text + " fasse la taille d’une POMME, qu’elle serait la taille de "+ obj2.text + " ?";
+        boutonRéponse.text = Réponse.text;
 
     }
 }
