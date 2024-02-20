@@ -53,7 +53,7 @@ public class Vide : MonoBehaviour
         pourcentageDial = 1 - valDial;
         
         pourcentageRetire = pourcentageDial;
-        transform.localScale = new Vector3(scale.x * pourcentageRetire +differenceX, scale.y * pourcentageRetire +differenceY, scale.z * pourcentageRetire +differenceZ);
+        transform.localScale = new Vector3(scale.x * pourcentageRetire +differenceX, scale.y * pourcentageRetire +differenceY,- scale.z * pourcentageRetire +differenceZ);
         majTxt();
     }
 
@@ -64,6 +64,6 @@ public class Vide : MonoBehaviour
 
     void calculDistance()
     {
-        transform.localPosition = new Vector3(vecdist.x * pourcentageRetire, vecdist.y * pourcentageRetire, vecdist.z * pourcentageRetire);
+        transform.localPosition = new Vector3(vecdist.x * pourcentageRetire, vecdist.y * pourcentageRetire, -vecdist.z * pourcentageRetire);
     }
 }
