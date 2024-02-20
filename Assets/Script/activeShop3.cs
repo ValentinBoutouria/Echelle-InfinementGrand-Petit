@@ -6,6 +6,7 @@ public class activeShop3 : MonoBehaviour
 {
 
     public GameObject oui;
+    public GameObject shop2;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,8 @@ public class activeShop3 : MonoBehaviour
         if(other.gameObject.name == "Main Camera")
         {
             oui.SetActive(true);
+            Debug.Log("test");
+
         }
     }
 
@@ -29,6 +32,11 @@ public class activeShop3 : MonoBehaviour
         if (other.gameObject.name == "Main Camera")
         {
             oui.SetActive(false);
+            shop2.SetActive(false);
+
+
+
         }
+        Debug.Log("ahhhhhhhy");
     }
 }
