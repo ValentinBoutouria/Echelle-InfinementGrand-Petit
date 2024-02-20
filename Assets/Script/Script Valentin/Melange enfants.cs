@@ -8,6 +8,7 @@ public class Melangeenfants : MonoBehaviour
 
     // Tableau d'images que vous souhaitez assigner aux enfants (assurez-vous de les assigner dans l'inspecteur Unity)
     public Sprite[] images;
+    private int index;
     void Start()
     {
         // Appeler la fonction pour mélanger les enfants au démarrage
@@ -59,11 +60,29 @@ public class Melangeenfants : MonoBehaviour
             if (imageComponent != null)
             {
                 // Choisir une image aléatoire du tableau
-                Sprite randomImage = images[Random.Range(0, images.Length)];
+                index = Random.Range(0, images.Length);
+                Sprite randomImage = images[index];
+                //remove
+                RemoveSpriteAt(index);
 
                 // Assigner l'image aléatoire au composant Image de l'enfant
                 imageComponent.sprite = randomImage;
             }
+        }
+    }
+    void RemoveSpriteAt(int index)
+    {
+        // S'assurer que l'indice est valide
+        if (index >= 0 && index < images.Length)
+        {
+            // Convertir le tableau en une liste pour faciliter la suppression
+            var spriteList = new System.Collections.Generic.List<Sprite>(images);
+
+            // Supprimer l'élément à l'indice spécifié
+            spriteList.RemoveAt(index);
+
+            // Mettre à jour le tableau avec la nouvelle liste
+            images = spriteList.ToArray();
         }
     }
 }
