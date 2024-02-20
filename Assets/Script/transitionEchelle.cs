@@ -17,7 +17,8 @@ public class transitionEchelle : MonoBehaviour
     public bool t = false;
     public bool t1 = false;
 
-    private Vector3 vectGros = new Vector3(0, 50, 150);
+    private Vector3 vectGros = new Vector3(0, 50, -100);
+    private Vector3 vectGrosStade = new Vector3(30, -50, -150);
 
 
     // Start is called before the first frame update
@@ -30,6 +31,10 @@ public class transitionEchelle : MonoBehaviour
             arr[j].GetComponent<Transform>().localPosition = vectGros;
             arr[j].GetComponent<Transform>().localScale = 100f * Vector3.one;
             //Debug.Log("AAAAAAAAAAAAA :          " + j);
+            if (arr[j].name == "stade")
+            {
+                arr[j].GetComponent<Transform>().localPosition = vectGrosStade;
+            }
         }
         arr[0].GetComponent<Transform>().localScale = 0.01f * Vector3.one;
         arr[0].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
@@ -59,6 +64,11 @@ public class transitionEchelle : MonoBehaviour
             {
                 arr[i+1].SetActive(true);
                 arr[i+1].GetComponent<Transform>().position = vectGros;
+                if (arr[i+1].name == "stade")
+                {
+                    arr[i+1].GetComponent<Transform>().localPosition = vectGrosStade;
+                }
+
             }
             if(arr[i].GetComponent<Transform>().localScale.x > 0.1 && arr[i].GetComponent<Transform>().position == _mainDroite.GetComponent<Transform>().position)
             {
@@ -67,7 +77,14 @@ public class transitionEchelle : MonoBehaviour
         }
         if (t1)
         {
-            arr[i+1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i+1].transform.position, vectGros, 5f);
+            if (arr[i+1].name != "stade")
+            {
+                arr[i+1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i+1].transform.position, vectGros, 5f);
+            }
+            else
+            {
+                arr[i+1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i + 1].transform.position, vectGrosStade, 5f); ;
+            }
             if (arr[i+1].GetComponent<Transform>().localScale.x < 100f)
             {
                 arr[i+1].GetComponent<Transform>().localScale *= 1.2f;
