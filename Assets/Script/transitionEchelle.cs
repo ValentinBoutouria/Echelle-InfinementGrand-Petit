@@ -18,7 +18,9 @@ public class transitionEchelle : MonoBehaviour
     public bool t1 = false;
 
     private Vector3 vectGros = new Vector3(0, 50, -100);
-    private Vector3 vectGrosStade = new Vector3(10, -20, -140);
+    private Vector3 vectGrosStade = new Vector3(0, -30, -140);
+    private Vector3 vectGrosSys = new Vector3(0, 50, -300);
+
 
 
     // Start is called before the first frame update
@@ -34,7 +36,11 @@ public class transitionEchelle : MonoBehaviour
             if (arr[j].name == "stade")
             {
                 arr[j].GetComponent<Transform>().localPosition = vectGrosStade;
-                arr[j].GetComponent<Transform>().Rotate(0, 70, 0);
+                arr[j].GetComponent<Transform>().Rotate(0, 210, 0);
+            }
+            if (arr[j].name == "sysSol")
+            {
+                arr[j].GetComponent<Transform>().localPosition = vectGrosSys;
             }
         }
         arr[0].GetComponent<Transform>().localScale = 0.01f * Vector3.one;
@@ -69,6 +75,10 @@ public class transitionEchelle : MonoBehaviour
                 {
                     arr[i+1].GetComponent<Transform>().localPosition = vectGrosStade;
                 }
+                if (arr[i + 1].name == "sysSol")
+                {
+                    arr[i + 1].GetComponent<Transform>().localPosition = vectGrosSys;
+                }
 
             }
             if(arr[i].GetComponent<Transform>().localScale.x > 0.1 && arr[i].GetComponent<Transform>().position == _mainDroite.GetComponent<Transform>().position)
@@ -81,6 +91,7 @@ public class transitionEchelle : MonoBehaviour
             if (arr[i+1].name != "stade")
             {
                 arr[i+1].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i+1].transform.position, vectGros, 10f);
+                arr[i + 1].GetComponent<Transform>().rotation = Quaternion.identity;
             }
             else
             {
