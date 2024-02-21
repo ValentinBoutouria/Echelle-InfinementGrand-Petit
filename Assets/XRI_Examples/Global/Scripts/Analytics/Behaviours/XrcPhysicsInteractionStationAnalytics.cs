@@ -34,8 +34,8 @@ namespace UnityEngine.XR.Content.Interaction.Analytics
         [SerializeField]
         XRBaseInteractable m_DoorKeyInteractable;
 
-        //[SerializeField]
-        //Door m_DoorLocked;
+        [SerializeField]
+        Door m_DoorLocked;
 
         [SerializeField]
         XRBaseInteractable m_DoorHandleInteractable;
@@ -56,7 +56,7 @@ namespace UnityEngine.XR.Content.Interaction.Analytics
                 onCollision.onEnter.AddListener(OnFlipDoorCollision);
             }
             XrcAnalyticsUtils.Register(m_DoorKeyInteractable, new GrabDoorKey());
-           // XrcAnalyticsUtils.Register(m_DoorLocked, new DoorLocked(), new DoorUnlocked());
+            XrcAnalyticsUtils.Register(m_DoorLocked, new DoorLocked(), new DoorUnlocked());
             XrcAnalyticsUtils.Register(m_DoorHandleInteractable, new GrabDoorHandle());
         }
 

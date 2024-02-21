@@ -27,9 +27,9 @@ public class Vide : MonoBehaviour
     void Start()
     {
         
-        differenceX = transform.localScale.x / 10000;
-        differenceY = transform.localScale.y / 10000;
-        differenceZ = transform.localScale.z / 10000;
+        differenceX = transform.localScale.x / 1000; //10000;
+        differenceY = transform.localScale.y / 1000; //10000;
+        differenceZ = transform.localScale.z / 1000; //10000;
         scale = new Vector3(transform.localScale.x - differenceX, transform.localScale.y- differenceY, transform.localScale.z- differenceZ);
         Debug.Log(scale);
 
