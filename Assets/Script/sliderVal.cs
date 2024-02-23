@@ -10,7 +10,7 @@ public class sliderVal : MonoBehaviour
     public Slider slider;
 
     public int i;
-    public float val;
+    public double val;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class sliderVal : MonoBehaviour
     void Update()
     {
         i = goScript.GetComponent<transitionEchelle>().i;
-        val = 1 / i;
-        slider.value = val;
+        val = 1 / (i+0.000001);
+        slider.value = (float)val;
     }
 }
