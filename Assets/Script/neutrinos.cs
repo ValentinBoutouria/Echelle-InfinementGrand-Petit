@@ -60,6 +60,8 @@ public class neutrinos : MonoBehaviour
 
     public void Display()
     {
+        _tf.position = cam.transform.position;
+        _tf.rotation = cam.transform.rotation;
         TMP.text = "En " + delTime + " secondes, " + cal + " Milliards de particules nommées neutrinos ont traversé votre coprs.\n C'est beaucoup? Oui et c'est normal mais surtout absolument innofenssif.";
         vide.SetActive(true);
         isActive = true;
