@@ -12,7 +12,7 @@ public class transitionEchelle : MonoBehaviour
 
     public GameObject _mainDroite;
 
-    private int i = 0;
+    public int i = 0;
 
     public bool t = false;
     public bool t1 = false;
@@ -32,7 +32,6 @@ public class transitionEchelle : MonoBehaviour
             arr[j].SetActive(false);
             arr[j].GetComponent<Transform>().localPosition = vectGros;
             arr[j].GetComponent<Transform>().localScale = 100f * Vector3.one;
-            //Debug.Log("AAAAAAAAAAAAA :          " + j);
             if (arr[j].name == "stade")
             {
                 arr[j].GetComponent<Transform>().localPosition = vectGrosStade;
@@ -112,17 +111,23 @@ public class transitionEchelle : MonoBehaviour
 
     public void Next(InputAction.CallbackContext context)
     {
-        arr[i].SetActive(false);
-        t = true;
-        i++;
+        if(i<9)
+        {
+            arr[i].SetActive(false);
+            t = true;
+            i++;
+        }
     }
 
     public void Previous(InputAction.CallbackContext context)
     {
-        arr[i].GetComponent<Transform>().SetParent(null);
-        arr[i+1].SetActive(false);
-        t1 = true;
-        i--;
+        if (i > 0)
+        {
+            arr[i].GetComponent<Transform>().SetParent(null);
+            arr[i + 1].SetActive(false);
+            t1 = true;
+            i--;
+        }
     }
 
 }
