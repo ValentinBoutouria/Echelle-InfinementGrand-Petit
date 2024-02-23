@@ -14,14 +14,15 @@ public class sliderVal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider = GameObject.FindObjectOfType<Slider>();
+        //Debug.Log(slider.name);
     }
 
     // Update is called once per frame
     void Update()
     {
         i = goScript.GetComponent<transitionEchelle>().i;
-        val = 1 / (i+0.000001);
+        val = 0.1 * i;
         slider.value = (float)val;
     }
 }

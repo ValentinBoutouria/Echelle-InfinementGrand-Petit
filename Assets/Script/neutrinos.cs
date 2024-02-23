@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,20 +10,22 @@ public class neutrinos : MonoBehaviour
 {
 
     public InputActionReference button;
-    public TextMeshPro TMP;
+    public TextMeshProUGUI TMP;
     public Transform cam;
     public GameObject vide;
 
     private Transform _tf;
-    private bool isActive = false;
-    private bool isTimer = false;
+    public bool isActive = false;
+    public bool isTimer = true;
     private double cal;
 
-    private double delTime = 0;
+    private DateTime deb = DateTime.Now;
+    private DateTime fin;
 
     // Start is called before the first frame update
     void Start()
     {
+        vide.SetActive(false);
         _tf = GetComponent<Transform>();
     }
 
@@ -32,19 +35,21 @@ public class neutrinos : MonoBehaviour
         button.action.started += Pressed;
         if(isTimer) 
         {
-            delTime += Time.deltaTime;
+            fin = DateTime.Now;
         }
         else
         {
-            cal += delTime * 65 * 17000;
+            cal += (fin-deb).Milliseconds * 65 * 17000 / 1000;
             Display();
-            delTime = 0;
+            //delTime = 0;
+            deb = DateTime.Now;
         }
         
         if(isActive) 
         {
-            delTime += Time.deltaTime;
-            if(delTime > 10)
+            //delTime += Time.deltaTime;
+            fin = DateTime.Now;
+            if((fin-deb).Seconds > 10)
             {
                 vide.SetActive(false);
                 isActive = false;
@@ -56,13 +61,14 @@ public class neutrinos : MonoBehaviour
     public void Pressed(InputAction.CallbackContext context)
     {
         isTimer = !isTimer;
+        fin = DateTime.Now;
     }
 
     public void Display()
     {
-        _tf.position = cam.transform.position;
+        _tf.position = cam.transform.position + new Vector3(0,0, 1.5f);
         _tf.rotation = cam.transform.rotation;
-        TMP.text = "En " + delTime + " secondes, " + cal + " Milliards de particules nommées neutrinos ont traversé votre coprs.\n C'est beaucoup? Oui et c'est normal mais surtout absolument innofenssif.";
+        TMP.text = "En " + cal*1000/65/17000 + " secondes, " + cal + " Milliards de particules nommées neutrinos ont traversé votre coprs.\n C'est beaucoup? Oui et c'est normal mais surtout absolument innofenssif.";
         vide.SetActive(true);
         isActive = true;
     }
