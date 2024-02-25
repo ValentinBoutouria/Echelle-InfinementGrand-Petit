@@ -111,7 +111,7 @@ public class transitionEchelle : MonoBehaviour
 
     public void Next(InputAction.CallbackContext context)
     {
-        if(i<8)
+        if(i<10)
         {
             arr[i].SetActive(false);
             t = true;
