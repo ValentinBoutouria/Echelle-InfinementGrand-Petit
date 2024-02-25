@@ -61,7 +61,7 @@ public class transitionEchelle : MonoBehaviour
         if (t)
         {
             arr[i].GetComponent<Transform>().SetParent(_mainDroite.GetComponent<Transform>());
-            arr[i].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i].transform.position, _mainDroite.GetComponent<Transform>().position, 2f);
+            arr[i].GetComponent<Transform>().position = Vector3.MoveTowards(arr[i].transform.position, _mainDroite.GetComponent<Transform>().position, 3f);
             if (arr[i].GetComponent<Transform>().localScale.x > 0.1)
             {
                 arr[i].GetComponent<Transform>().localScale /= 1.2f;
@@ -111,11 +111,8 @@ public class transitionEchelle : MonoBehaviour
 
     public void Next(InputAction.CallbackContext context)
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAa");
         if(i<8)
         {
-            Debug.Log("BBBBBBBBBBBBBBBBBBBBBBB");
-
             arr[i].SetActive(false);
             t = true;
             i++;
